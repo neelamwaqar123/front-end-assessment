@@ -39,17 +39,6 @@ function ContentModal() {
   const { onOpen, onClose, isOpen } = useDisclosure({ defaultIsOpen: true });
 
   useEffect(() => {
-    // const firstActive =
-    //   productDetails &&
-    //   productDetails?.solid.map((solid: SolidChild) =>
-    //     solid.size?.map((size: any) =>
-    //       Object.keys(size).filter((key: any) => {
-    //         if (size[key].status === "Active") {
-    //           return { price: size[key].price, key: key };
-    //         } else return null;
-    //       })
-    //     )
-    //   );
     let firstActive =
       productDetails &&
       productDetails.solid.map((solid: SolidChild) => {
@@ -65,13 +54,6 @@ function ContentModal() {
     setSelectedSize(size);
     price && setPrice(price);
   }, []);
-
-  // const test = (key: string, val: ProductProperty) => {
-  //   if (val?.status === "Active") {
-  //     setSelectedSize(key);
-  //     setPrice(val?.price);
-  //   }
-  // };
 
   return (
     <>
