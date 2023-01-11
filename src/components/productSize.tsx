@@ -1,29 +1,41 @@
-import React from "react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  useDisclosure,
-  Box,
-} from "@chakra-ui/react";
-function ProductSize() {
+import { Box } from "@chakra-ui/react";
+import productDetails from "../productDetails.json";
+
+export interface ProductProperty {
+  price: string;
+  status: string;
+  variant_id: string;
+}
+
+interface ProductSizeProps {
+  size: string;
+  index: number;
+  setSelectedSize: (url: string) => void;
+  setPrice: (url: string) => void;
+  price: string;
+  active: boolean;
+}
+
+function ProductSize(props: ProductSizeProps) {
+  const { size, index, setSelectedSize, active, setPrice, price } = props;
+
   return (
     <Box
+      key={index}
+      onClick={() => {
+        setSelectedSize(size);
+        setPrice(price);
+      }}
       w="41px"
       h="41px"
-      bg="white"
       border="1px solid #000000"
       m="0 10px 0 0"
       display="flex"
       justifyContent="center"
       alignItems="center"
+      bg={active ? "green" : "white"}
     >
-      M
+      {size}
     </Box>
   );
 }

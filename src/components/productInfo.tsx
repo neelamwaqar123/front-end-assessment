@@ -23,7 +23,7 @@ function ProductInfo(props: ProductInfoProps) {
       }
       as={isBold ? "b" : "samp"}
     >
-      {text}
+      {headingType === "price" ? `$${text}` : text}
     </Text>
   );
 }

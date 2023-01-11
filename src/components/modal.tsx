@@ -10,26 +10,85 @@ import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import ProductImage from "./productImage";
 import ProductInfo from "./productInfo";
-import ProductSize from "./productSize";
+import ProductSize, { ProductProperty } from "./productSize";
+import productDetails from "../productDetails.json";
+import { useEffect, useState } from "react";
+
+export interface Size {
+  price: string;
+  status: string;
+  variant_id: string;
+}
+
+interface SizeObject {
+  [key: string]: Size | undefined;
+}
+
+export interface SolidChild {
+  size: SizeObject[];
+  images: string[];
+}
+export type Solid = [SolidChild];
+
 function ContentModal() {
+  const [selectedSize, setSelectedSize] = useState("");
+  const [price, setPrice] = useState("");
+  const [selectedImage, setSelectedImage] = useState(
+    productDetails?.solid[0].images[0]
+  );
   const { onOpen, onClose, isOpen } = useDisclosure({ defaultIsOpen: true });
+
+  useEffect(() => {
+    // const firstActive =
+    //   productDetails &&
+    //   productDetails?.solid.map((solid: SolidChild) =>
+    //     solid.size?.map((size: any) =>
+    //       Object.keys(size).filter((key: any) => {
+    //         if (size[key].status === "Active") {
+    //           return { price: size[key].price, key: key };
+    //         } else return null;
+    //       })
+    //     )
+    //   );
+    let firstActive =
+      productDetails &&
+      productDetails.solid.map((solid: SolidChild) => {
+        return solid.size.find((size) =>
+          Object.keys(size).filter((key) => size[key]!.status === "Active")
+        );
+      });
+
+    console.log("first activee", firstActive);
+    const active = firstActive[0] as SizeObject;
+    let size = Object.keys(active)[0];
+    let price = active && active[size]?.price;
+    setSelectedSize(size);
+    price && setPrice(price);
+  }, []);
+
+  // const test = (key: string, val: ProductProperty) => {
+  //   if (val?.status === "Active") {
+  //     setSelectedSize(key);
+  //     setPrice(val?.price);
+  //   }
+  // };
+
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalContent maxW="1000px" bg="black" h="500px">
+        <ModalContent maxW="1000px" h="500px">
           <ModalBody
             p="20px"
             display="flex"
             flexDirection={{
               lg: "row",
             }}
-            bg="red"
+            border="1px solid black"
             h="inherit"
           >
             <Box
               className="left"
-              bg="blue"
               display="flex"
               w="650px"
               h="100%"
@@ -38,7 +97,6 @@ function ContentModal() {
               }}
             >
               <Box
-                bg="pink"
                 flexDirection={{
                   lg: "column",
                 }}
@@ -46,39 +104,39 @@ function ContentModal() {
                 w="150px"
                 overflow="auto"
               >
-                <ProductImage />
-                <ProductImage /> <ProductImage />
-                <ProductImage /> <ProductImage />
-                <ProductImage /> <ProductImage />
-                <ProductImage /> <ProductImage />
-                <ProductImage /> <ProductImage />
-                <ProductImage /> <ProductImage />
-                <ProductImage />
+                {productDetails &&
+                  productDetails?.solid.map((solid: SolidChild) =>
+                    solid.images.map((img: string, index: number) => (
+                      <ProductImage
+                        src={img}
+                        index={index}
+                        setSelectedImage={setSelectedImage}
+                      />
+                    ))
+                  )}
               </Box>
               <Box
                 className="product-img"
                 w="550px"
-                bg="yellow"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
               >
                 <Image
-                  src="https://picsum.photos/200/300"
+                  src={selectedImage}
                   alt="Dan Abramov"
                   w="480px"
                   h="100%"
                 />
               </Box>
             </Box>
-            <Box className="right" h="100%" bg="tomato" w="350px">
+            <Box className="right" h="100%" w="350px">
               <Box
                 className="content"
                 display="flex"
                 flexDirection={{
                   lg: "column",
                 }}
-                bg="orange"
                 mx="10px"
               >
                 <ProductInfo text="ULTRA" headingType="main" isBold={true} />
@@ -88,11 +146,10 @@ function ContentModal() {
                   isBold={true}
                 />
                 <ProductInfo text="Boxer Brief/Multi Havana" />
-                <ProductInfo text="$36.00" headingType="price" isBold={true} />
+                <ProductInfo text={price} headingType="price" isBold={true} />
               </Box>
               <Box
                 className="actions"
-                bg="purple"
                 mx="10px"
                 pt="20px"
                 display="flex"
@@ -106,12 +163,21 @@ function ContentModal() {
                   Size
                 </Text>
                 <Box className="sizes" display="flex">
-                  <ProductSize />
-                  <ProductSize />
-                  <ProductSize />
-                  <ProductSize />
-                  <ProductSize />
-                  <ProductSize />
+                  {productDetails &&
+                    productDetails?.solid.map((solid: any) =>
+                      solid.size?.map(
+                        (size: ProductProperty, index: number) => (
+                          <ProductSize
+                            size={Object.keys(size)[0]}
+                            price={Object.values(size)[0]?.price}
+                            index={index}
+                            setSelectedSize={setSelectedSize}
+                            setPrice={setPrice}
+                            active={Object.keys(size)[0] === selectedSize}
+                          />
+                        )
+                      )
+                    )}
                 </Box>
                 <Box mt="auto" display="flex" justifyContent="center">
                   <Button
