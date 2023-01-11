@@ -26,14 +26,16 @@ function ProductSize(props: ProductSizeProps) {
         setSelectedSize(size);
         setPrice(price);
       }}
-      w="41px"
-      h="41px"
+      w={["35px", "40px", "41px", "41px"]}
+      h={["35px", "40px", "41px", "41px"]}
       border="1px solid #000000"
-      m="0 10px 0 0"
+      m={["5px", "5px", "5px", "5px"]}
       display="flex"
       justifyContent="center"
+      fontSize={["12px", "15px", "18px", "18px"]}
       alignItems="center"
-      bg={active ? "green" : "white"}
+      bg={active ? "black" : "white"}
+      color={active ? "white" : "black"}
     >
       {size}
     </Box>

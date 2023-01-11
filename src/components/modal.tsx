@@ -47,7 +47,6 @@ function ContentModal() {
         );
       });
 
-    console.log("first activee", firstActive);
     const active = firstActive[0] as SizeObject;
     let size = Object.keys(active)[0];
     let price = active && active[size]?.price;
@@ -59,66 +58,121 @@ function ContentModal() {
     <>
       <Button onClick={onOpen}>Open Modal</Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalContent maxW="1000px" h="500px">
+        <ModalContent
+          maxW={["75vw", "740px", "1000px", "1000px"]}
+          h={["auto", "auto", "500px", "500px", "500px"]}
+        >
           <ModalBody
-            p="20px"
+            p={["20px", "20px", "20px", "20px"]}
             display="flex"
-            flexDirection={{
-              lg: "row",
-            }}
+            flexDirection={["column", "column", "row", "row"]}
             border="1px solid black"
-            h="inherit"
+            h={["inherit", "inherit", "inherit", "inherit", "inherit"]}
           >
+            <Box
+              className="content"
+              display={["flex", "none", "none", "none"]}
+              flexDirection={["column", "column", "column", "column", "column"]}
+              mx="10px"
+              h={["150px", "150px", "320px", "320px", "320px"]}
+            >
+              <Text
+                fontWeight={800}
+                fontSize={["30px", "32px", "35px", "35px"]}
+                lineHeight={10}
+                as="b"
+              >
+                ULTRA
+              </Text>
+              <Text
+                fontWeight={600}
+                fontSize={["20px", "32px", "35px", "35px"]}
+                lineHeight={5}
+              >
+                Super Soft
+              </Text>
+              <Text fontSize={["12px", "12px", "15px", "15px"]} lineHeight={5}>
+                Boxer Brief/Multi Havana
+              </Text>
+              <Text
+                fontWeight={200}
+                fontSize={["30px", "32px", "35px", "35px"]}
+              >
+                {`$${price}`}
+              </Text>
+            </Box>
             <Box
               className="left"
               display="flex"
-              w="650px"
-              h="100%"
-              flexDirection={{
-                lg: "row",
-              }}
+              // bg="red"
+              w={["100%", "inherit", "650px", "1000px"]}
+              h={["250px", "560px", "100%", "1000px", "500px"]}
+              justifyContent={["space-between", "", "", ""]}
+              flexDirection={[
+                "column-reverse",
+                "column-reverse",
+                "row",
+                "row",
+                "row",
+              ]}
             >
               <Box
-                flexDirection={{
-                  lg: "column",
-                }}
-                maxH="500px"
-                w="150px"
-                overflow="auto"
+                display="flex"
+                flexDirection={["row", "row", "column", "row"]}
+                maxH={["0px", "500px", "500px"]}
+                w={["100%", "100%", "150px", "150px"]}
+                maxW={["100%", "720px", "150px", "150px"]}
+                overflowY={["auto", "hidden", "auto", "auto"]}
+                overflowX={["hidden", "auto", "hidden", "hidden"]}
+                flexWrap="nowrap"
               >
                 {productDetails &&
                   productDetails?.solid.map((solid: SolidChild) =>
                     solid.images.map((img: string, index: number) => (
-                      <ProductImage
+                      <Image
+                        w={["50px", "110px", "40px"]}
+                        h={["50px", "110px", "40px"]}
+                        m={["0 5px", "0 auto", "0", "0"]}
                         src={img}
-                        index={index}
-                        setSelectedImage={setSelectedImage}
+                        key={index}
+                        onClick={() => setSelectedImage(img)}
                       />
                     ))
                   )}
               </Box>
               <Box
                 className="product-img"
-                w="550px"
+                w={["100%", "100%", "550px", "150px"]}
+                // flexDirection={{
+                //   sm: "column",
+                //   md: "column",
+                //   lg: "row",
+                //   xl: "row",
+                //   xxl: "row",
+                // }}
+                // bg="pink"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
               >
                 <Image
+                  m={["0 auto", "0 auto", "0", "0"]}
                   src={selectedImage}
                   alt="Dan Abramov"
-                  w="480px"
+                  w={["180px", "441px", "480px", "550px"]}
                   h="100%"
                 />
               </Box>
             </Box>
-            <Box className="right" h="100%" w="350px">
+            <Box
+              className="right"
+              h={["fit-content", "200px", "100%", "100%"]}
+              w={["100%", "776px", "350", "350", "350"]}
+            >
               <Box
                 className="content"
-                display="flex"
-                flexDirection={{
-                  lg: "column",
-                }}
+                display={["none", "flex", "flex", "flex"]}
+                flexDirection={["column", "column", "column", "column"]}
                 mx="10px"
               >
                 <ProductInfo text="ULTRA" headingType="main" isBold={true} />
@@ -136,15 +190,13 @@ function ContentModal() {
                 pt="20px"
                 display="flex"
                 justifyContent="flex-start"
-                h="320px"
-                flexDirection={{
-                  lg: "column",
-                }}
+                h={["inherit", "200px", "320px", "320px", "320px"]}
+                flexDirection={["column", "row", "column", "column"]}
               >
                 <Text fontSize="18px" as="b">
                   Size
                 </Text>
-                <Box className="sizes" display="flex">
+                <Box flexWrap="wrap" className="sizes" display="flex">
                   {productDetails &&
                     productDetails?.solid.map((solid: any) =>
                       solid.size?.map(
@@ -161,11 +213,15 @@ function ContentModal() {
                       )
                     )}
                 </Box>
-                <Box mt="auto" display="flex" justifyContent="center">
+                <Box
+                  mt={["10px", "auto"]}
+                  display="flex"
+                  justifyContent="center"
+                >
                   <Button
                     as="button"
-                    h="50px"
-                    w="100%"
+                    h={["50px", "50px", "50px", "50px"]}
+                    w={["100%", "100%", "100%", "100%"]}
                     color="#ffffff"
                     background="red"
                     borderRadius="0px"

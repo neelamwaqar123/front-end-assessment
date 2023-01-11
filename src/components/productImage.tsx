@@ -13,7 +13,7 @@ function ProductImage(props: ProductImageProps) {
   return (
     <Image
       onClick={() => setSelectedImage(src)}
-      m="0 auto"
+      m={["0", "0", "0 auto", "0"]}
       src={src}
       key={index}
       alt="Dan Abramov"
