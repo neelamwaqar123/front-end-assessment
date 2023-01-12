@@ -140,7 +140,7 @@ function ContentModal() {
                 description={productDummyData.description}
                 type={productDummyData.type}
                 price={price}
-                isMobile
+                isMobile={false}
               />
               <Box
                 className="actions"
