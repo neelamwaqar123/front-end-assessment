@@ -1,23 +1,26 @@
 import { Box } from "@chakra-ui/react";
 import { ProductSizeProps } from "../interface";
 
-function ProductSize(props: ProductSizeProps) {
-  const { size, index, setSelectedSize, active, setPrice, price } = props;
-
+function ProductSize({
+  size,
+  setSelectedSize,
+  active,
+  setPrice,
+  price,
+}: ProductSizeProps) {
   return (
     <Box
-      key={index}
       onClick={() => {
         setSelectedSize(size);
         setPrice(price);
       }}
-      w={["35px", "40px", "41px", "41px"]}
-      h={["35px", "40px", "41px", "41px"]}
+      w={["40px", "40px", "40px", "41px", "41px"]}
+      h={["40px", "40px", "40px", "41px", "41px"]}
       border="1px solid #000000"
-      m={["5px", "5px", "5px", "5px"]}
+      m="5px 5px 0px 0px"
       display="flex"
       justifyContent="center"
-      fontSize={["12px", "15px", "18px", "18px"]}
+      fontSize={["12px", "15px", "15px", "15px", "15px"]}
       alignItems="center"
       bg={active ? "black" : "white"}
       color={active ? "white" : "black"}
