@@ -11,10 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
-import ProductSize, { ProductProperty } from "./productSize";
+import ProductSize from "./productSize";
 import { productDummyData } from "../content";
 import { useEffect, useState } from "react";
-import { SolidChild, SizeObject } from "../interface";
+import { SolidChild, SizeObject, ProductProperty } from "../interface";
 import TextContent from "./TextContent";
 
 function ContentModal() {

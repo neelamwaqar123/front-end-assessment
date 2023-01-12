@@ -1,19 +1,5 @@
 import { Box } from "@chakra-ui/react";
-
-export interface ProductProperty {
-  price: string;
-  status: string;
-  variant_id: string;
-}
-
-interface ProductSizeProps {
-  size: string;
-  index: number;
-  setSelectedSize: (url: string) => void;
-  setPrice: (url: string) => void;
-  price: string;
-  active: boolean;
-}
+import { ProductSizeProps } from "../interface";
 
 function ProductSize(props: ProductSizeProps) {
   const { size, index, setSelectedSize, active, setPrice, price } = props;
