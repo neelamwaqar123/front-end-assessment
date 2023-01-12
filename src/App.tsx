@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import ContentModal from "./components/modal";
+import ContentModal from "./components/PDP";
 
 function App() {
   return (
