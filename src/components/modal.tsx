@@ -6,6 +6,7 @@ import {
   useDisclosure,
   Box,
   Spinner,
+  ModalOverlay,
 } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
@@ -55,6 +56,7 @@ function ContentModal() {
     />
   ) : (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <ModalOverlay />
       <ModalContent
         maxW={["75vw", "380px", "580px", "985px", "990px"]}
         h={["auto", "auto", "auto", "500px", "500px"]}
