@@ -63,7 +63,6 @@ function ContentModal() {
             <Box
               className="left"
               display="flex"
-              // bg="red"
               w={["100%", "inherit", "650px", "1000px"]}
               h={["250px", "560px", "100%", "1000px", "500px"]}
               justifyContent={["space-between", "", "", ""]}
@@ -102,14 +101,6 @@ function ContentModal() {
               <Box
                 className="product-img"
                 w={["100%", "100%", "550px", "150px"]}
-                // flexDirection={{
-                //   sm: "column",
-                //   md: "column",
-                //   lg: "row",
-                //   xl: "row",
-                //   xxl: "row",
-                // }}
-                // bg="pink"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -140,7 +131,6 @@ function ContentModal() {
                 mx="10px"
                 pt="20px"
                 display="flex"
-                // w={["720px"]}
                 justifyContent={["flex-start", "space-between", "flex-start"]}
                 h={["inherit", "200px", "320px", "320px", "320px"]}
                 flexDirection={["column", "row", "column", "column"]}
@@ -173,7 +163,6 @@ function ContentModal() {
                   mt={["10px", "0px", "0px", "auto"]}
                   display="flex"
                   justifyContent="center"
-                  // bg="red"
                 >
                   <Button
                     as="button"
