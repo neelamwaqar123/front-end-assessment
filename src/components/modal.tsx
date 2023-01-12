@@ -13,22 +13,7 @@ import ProductInfo from "./productInfo";
 import ProductSize, { ProductProperty } from "./productSize";
 import { productDummyData } from "../content";
 import { useEffect, useState } from "react";
-
-export interface Size {
-  price: string;
-  status: string;
-  variant_id: string;
-}
-
-interface SizeObject {
-  [key: string]: Size | undefined;
-}
-
-export interface SolidChild {
-  size: SizeObject[];
-  images: string[];
-}
-export type Solid = [SolidChild];
+import { SolidChild, SizeObject } from "../interface";
 
 function ContentModal() {
   const [selectedSize, setSelectedSize] = useState("");
