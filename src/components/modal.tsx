@@ -7,6 +7,7 @@ import {
   Box,
   Spinner,
   ModalOverlay,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
@@ -62,6 +63,7 @@ function ContentModal() {
         h={["auto", "auto", "auto", "500px", "500px"]}
         borderRadius="0px"
       >
+        <ModalCloseButton size={["sm", "sm", "md", "lg", "lg"]} />
         <ModalBody
           p={["20px", "20px", "20px", "20px", "20px"]}
           display="flex"
