@@ -40,18 +40,18 @@ function ContentModal() {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      {/* <Button onClick={onOpen}>Open Modal</Button> */}
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalContent
-          maxW={["75vw", "740px", "1000px", "1000px"]}
-          h={["auto", "auto", "500px", "500px", "500px"]}
+          maxW={["75vw", "380px", "580px", "985px", "990px"]}
+          h={["auto", "auto", "auto", "500px", "500px"]}
+          borderRadius="0px"
         >
           <ModalBody
-            p={["20px", "20px", "20px", "20px"]}
+            p={["20px", "20px", "20px", "20px", "20px"]}
             display="flex"
-            flexDirection={["column", "column", "row", "row"]}
-            border="1px solid black"
-            h={["inherit", "inherit", "inherit", "inherit", "inherit"]}
+            flexDirection={["column", "column", "column", "row", "row"]}
+            h="inherit"
           >
             <TextContent
               name={productDummyData.name}
@@ -63,34 +63,43 @@ function ContentModal() {
             <Box
               className="left"
               display="flex"
-              w={["100%", "inherit", "650px", "1000px"]}
-              h={["250px", "560px", "100%", "1000px", "500px"]}
-              justifyContent={["space-between", "", "", ""]}
+              w={["100%", "100%", "100%", "650px", "650px"]}
+              h={["auto", "390px", "610px", "inherit", "inherit"]}
+              justifyContent={[
+                "space-between",
+                "space-between",
+                "space-between",
+                "unset",
+                "unset",
+              ]}
               flexDirection={[
                 "column-reverse",
                 "column-reverse",
-                "row",
+                "column-reverse",
                 "row",
                 "row",
               ]}
             >
               <Box
                 display="flex"
-                flexDirection={["row", "row", "column", "row"]}
-                maxH={["0px", "500px", "500px"]}
-                w={["100%", "100%", "150px", "150px"]}
-                maxW={["100%", "720px", "150px", "150px"]}
-                overflowY={["auto", "hidden", "auto", "auto"]}
-                overflowX={["hidden", "auto", "hidden", "hidden"]}
+                flexDirection={["row", "row", "row", "column", "column"]}
+                maxH={["70px", "90px", "115px", "450px", "450px"]}
+                h={["70px", "90px", "115px", "unset", "unset"]}
+                w={["100%", "100%", "100%", "150px", "150px"]}
+                maxW={["100%", "100%", "100%", "150px", "150px"]}
+                overflow="auto"
                 flexWrap="nowrap"
+                justifyContent="start"
+                alignItems="center"
               >
                 {productDummyData &&
                   productDummyData?.solid.map((solid: SolidChild) =>
                     solid.images.map((img: string, index: number) => (
                       <Image
-                        w={["50px", "110px", "40px"]}
-                        h={["50px", "110px", "40px"]}
-                        m={["0 5px", "0 auto", "0", "0"]}
+                        cursor="pointer"
+                        w={["52px", "58px", "98px", "80px", "80px"]}
+                        h={["52px", "58px", "98px", "80px", "80px"]}
+                        m={["0 5px", "0 5px", "0 5px", "5px", "5px"]}
                         src={img}
                         key={index}
                         onClick={() => setSelectedImage(img)}
@@ -100,24 +109,31 @@ function ContentModal() {
               </Box>
               <Box
                 className="product-img"
-                w={["100%", "100%", "550px", "150px"]}
+                w="100%"
+                h={["100%", "100%", "100%", "460px", "460px"]}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
               >
                 <Image
-                  m={["0 auto", "0 auto", "0", "0"]}
+                  m="0 auto"
                   src={selectedImage}
-                  alt="Dan Abramov"
-                  w={["180px", "441px", "480px", "550px"]}
-                  h="100%"
+                  w={["90%", "90%", "90%", "100%", "100%"]}
+                  h={["100%", "100%", "unset", "100%", "100%"]}
                 />
               </Box>
             </Box>
             <Box
               className="right"
-              h={["fit-content", "200px", "100%", "100%"]}
-              w={["100%", "776px", "350", "350", "350"]}
+              ml={["unset", "unset", "unset", "20px", "20px"]}
+              h={[
+                "fit-content",
+                "fit-content",
+                "fit-content",
+                "inherit",
+                "inherit",
+              ]}
+              w={["100%", "100%", "100%", "350px", "350px"]}
             >
               <TextContent
                 name={productDummyData.name}
@@ -128,48 +144,60 @@ function ContentModal() {
               />
               <Box
                 className="actions"
-                mx="10px"
-                pt="20px"
+                pt={["20px", "20px", "10px", "20px", "20px"]}
                 display="flex"
-                justifyContent={["flex-start", "space-between", "flex-start"]}
-                h={["inherit", "200px", "320px", "320px", "320px"]}
-                flexDirection={["column", "row", "column", "column"]}
+                justifyContent={[
+                  "flex-start",
+                  "flex-start",
+                  "space-between",
+                  "flex-start",
+                  "flex-start",
+                ]}
+                h={["inherit", "inherit", "inherit", "320px", "320px"]}
+                w={["100%", "100%", "100%", "100%", "100%"]}
+                flexDirection={["column", "column", "row", "column", "column"]}
               >
-                <Text
-                  fontSize="18px"
-                  as="b"
-                  display={["block", "none", "block", "block"]}
-                >
-                  Size
-                </Text>
-                <Box flexWrap="wrap" className="sizes" display="flex">
-                  {productDummyData &&
-                    productDummyData?.solid.map((solid: any) =>
-                      solid.size?.map(
-                        (size: ProductProperty, index: number) => (
-                          <ProductSize
-                            size={Object.keys(size)[0]}
-                            price={Object.values(size)[0]?.price}
-                            index={index}
-                            setSelectedSize={setSelectedSize}
-                            setPrice={setPrice}
-                            active={Object.keys(size)[0] === selectedSize}
-                          />
+                <Box display="flex" flexDirection="column">
+                  <Text
+                    fontWeight={600}
+                    fontSize={["18px", "18px", "18px", "20px", "20px"]}
+                  >
+                    Size
+                  </Text>
+                  <Box
+                    flexWrap="wrap"
+                    className="sizes"
+                    display="flex"
+                    justifyContent="space-between"
+                  >
+                    {productDummyData &&
+                      productDummyData?.solid.map((solid: any) =>
+                        solid.size?.map(
+                          (size: ProductProperty, index: number) => (
+                            <ProductSize
+                              key={index}
+                              size={Object.keys(size)[0]}
+                              price={Object.values(size)[0]?.price}
+                              index={index}
+                              setSelectedSize={setSelectedSize}
+                              setPrice={setPrice}
+                              active={Object.keys(size)[0] === selectedSize}
+                            />
+                          )
                         )
-                      )
-                    )}
+                      )}
+                  </Box>
                 </Box>
                 <Box
-                  mt={["10px", "0px", "0px", "auto"]}
-                  display="flex"
-                  justifyContent="center"
+                  mt={["10px", "10px", "auto", "auto", "auto"]}
+                  h={["40px", "40px", "40px", "50px", "50px"]}
+                  w={["100%", "100%", "50%", "100%", "100%"]}
                 >
                   <Button
-                    as="button"
-                    h={["50px", "50px", "50px", "50px"]}
-                    w={["100%", "100%", "100%", "100%"]}
+                    h="inherit"
+                    w="100%"
                     color="#ffffff"
-                    background="red"
+                    background="#DF1E1C"
                     borderRadius="0px"
                   >
                     Add to Cart
