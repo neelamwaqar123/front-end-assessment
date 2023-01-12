@@ -8,12 +8,11 @@ import {
 } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
-import ProductImage from "./productImage";
-import ProductInfo from "./productInfo";
 import ProductSize, { ProductProperty } from "./productSize";
 import { productDummyData } from "../content";
 import { useEffect, useState } from "react";
 import { SolidChild, SizeObject } from "../interface";
+import TextContent from "./TextContent";
 
 function ContentModal() {
   const [selectedSize, setSelectedSize] = useState("");
@@ -54,38 +53,13 @@ function ContentModal() {
             border="1px solid black"
             h={["inherit", "inherit", "inherit", "inherit", "inherit"]}
           >
-            <Box
-              className="content"
-              display={["flex", "none", "none", "none"]}
-              flexDirection={["column", "column", "column", "column", "column"]}
-              mx="10px"
-              h={["150px", "150px", "320px", "320px", "320px"]}
-            >
-              <Text
-                fontWeight={800}
-                fontSize={["30px", "32px", "35px", "35px"]}
-                lineHeight={10}
-                as="b"
-              >
-                ULTRA
-              </Text>
-              <Text
-                fontWeight={600}
-                fontSize={["20px", "32px", "35px", "35px"]}
-                lineHeight={5}
-              >
-                Super Soft
-              </Text>
-              <Text fontSize={["12px", "12px", "15px", "15px"]} lineHeight={5}>
-                Boxer Brief/Multi Havana
-              </Text>
-              <Text
-                fontWeight={200}
-                fontSize={["30px", "32px", "35px", "35px"]}
-              >
-                {`$${price}`}
-              </Text>
-            </Box>
+            <TextContent
+              name={productDummyData.name}
+              description={productDummyData.description}
+              type={productDummyData.type}
+              price={price}
+              isMobile
+            />
             <Box
               className="left"
               display="flex"
@@ -154,53 +128,13 @@ function ContentModal() {
               h={["fit-content", "200px", "100%", "100%"]}
               w={["100%", "776px", "350", "350", "350"]}
             >
-              <Box
-                className="content"
-                display={["none", "flex", "flex", "flex"]}
-                flexDirection={["column", "column", "column", "column"]}
-                mx="10px"
-              >
-                {/* <Text
-                  fontWeight={800}
-                  fontSize={["30px", "32px", "35px", "35px"]}
-                  lineHeight={10}
-                  as="b"
-                >
-                  ULTRA
-                </Text>
-                <Text
-                  fontWeight={800}
-                  fontSize={["30px", "32px", "35px", "35px"]}
-                  lineHeight={10}
-                  as="b"
-                >
-                  ULTRA
-                </Text>
-                <Text
-                  fontWeight={800}
-                  fontSize={["30px", "32px", "35px", "35px"]}
-                  lineHeight={10}
-                  as="b"
-                >
-                  ULTRA
-                </Text>
-                <Text
-                  fontWeight={800}
-                  fontSize={["30px", "32px", "35px", "35px"]}
-                  lineHeight={10}
-                  as="b"
-                >
-                  Size
-                </Text> */}
-                <ProductInfo text="ULTRA" headingType="main" isBold={true} />
-                <ProductInfo
-                  text="Super Soft"
-                  headingType="sub"
-                  isBold={true}
-                />
-                <ProductInfo text="Boxer Brief/Multi Havana" />
-                <ProductInfo text={price} headingType="price" isBold={true} />
-              </Box>
+              <TextContent
+                name={productDummyData.name}
+                description={productDummyData.description}
+                type={productDummyData.type}
+                price={price}
+                isMobile
+              />
               <Box
                 className="actions"
                 mx="10px"
