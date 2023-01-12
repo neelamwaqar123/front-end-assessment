@@ -11,7 +11,7 @@ import { Image } from "@chakra-ui/react";
 import ProductImage from "./productImage";
 import ProductInfo from "./productInfo";
 import ProductSize, { ProductProperty } from "./productSize";
-import productDetails from "../productDetails.json";
+import { productDummyData } from "../content";
 import { useEffect, useState } from "react";
 
 export interface Size {
@@ -34,14 +34,14 @@ function ContentModal() {
   const [selectedSize, setSelectedSize] = useState("");
   const [price, setPrice] = useState("");
   const [selectedImage, setSelectedImage] = useState(
-    productDetails?.solid[0].images[0]
+    productDummyData?.solid[0].images[0]
   );
   const { onOpen, onClose, isOpen } = useDisclosure({ defaultIsOpen: true });
 
   useEffect(() => {
     let firstActive =
-      productDetails &&
-      productDetails.solid.map((solid: SolidChild) => {
+      productDummyData &&
+      productDummyData.solid.map((solid: SolidChild) => {
         return solid.size.find((size) =>
           Object.keys(size).filter((key) => size[key]!.status === "Active")
         );
@@ -126,8 +126,8 @@ function ContentModal() {
                 overflowX={["hidden", "auto", "hidden", "hidden"]}
                 flexWrap="nowrap"
               >
-                {productDetails &&
-                  productDetails?.solid.map((solid: SolidChild) =>
+                {productDummyData &&
+                  productDummyData?.solid.map((solid: SolidChild) =>
                     solid.images.map((img: string, index: number) => (
                       <Image
                         w={["50px", "110px", "40px"]}
@@ -175,6 +175,38 @@ function ContentModal() {
                 flexDirection={["column", "column", "column", "column"]}
                 mx="10px"
               >
+                {/* <Text
+                  fontWeight={800}
+                  fontSize={["30px", "32px", "35px", "35px"]}
+                  lineHeight={10}
+                  as="b"
+                >
+                  ULTRA
+                </Text>
+                <Text
+                  fontWeight={800}
+                  fontSize={["30px", "32px", "35px", "35px"]}
+                  lineHeight={10}
+                  as="b"
+                >
+                  ULTRA
+                </Text>
+                <Text
+                  fontWeight={800}
+                  fontSize={["30px", "32px", "35px", "35px"]}
+                  lineHeight={10}
+                  as="b"
+                >
+                  ULTRA
+                </Text>
+                <Text
+                  fontWeight={800}
+                  fontSize={["30px", "32px", "35px", "35px"]}
+                  lineHeight={10}
+                  as="b"
+                >
+                  Size
+                </Text> */}
                 <ProductInfo text="ULTRA" headingType="main" isBold={true} />
                 <ProductInfo
                   text="Super Soft"
@@ -189,16 +221,21 @@ function ContentModal() {
                 mx="10px"
                 pt="20px"
                 display="flex"
-                justifyContent="flex-start"
+                // w={["720px"]}
+                justifyContent={["flex-start", "space-between", "flex-start"]}
                 h={["inherit", "200px", "320px", "320px", "320px"]}
                 flexDirection={["column", "row", "column", "column"]}
               >
-                <Text fontSize="18px" as="b">
+                <Text
+                  fontSize="18px"
+                  as="b"
+                  display={["block", "none", "block", "block"]}
+                >
                   Size
                 </Text>
                 <Box flexWrap="wrap" className="sizes" display="flex">
-                  {productDetails &&
-                    productDetails?.solid.map((solid: any) =>
+                  {productDummyData &&
+                    productDummyData?.solid.map((solid: any) =>
                       solid.size?.map(
                         (size: ProductProperty, index: number) => (
                           <ProductSize
@@ -214,9 +251,10 @@ function ContentModal() {
                     )}
                 </Box>
                 <Box
-                  mt={["10px", "auto"]}
+                  mt={["10px", "0px", "0px", "auto"]}
                   display="flex"
                   justifyContent="center"
+                  // bg="red"
                 >
                   <Button
                     as="button"
