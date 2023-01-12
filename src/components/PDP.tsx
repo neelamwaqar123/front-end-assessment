@@ -19,6 +19,7 @@ import TextContent from "./TextContent";
 
 function ContentModal() {
   const [modalActive, setModalActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
   const [price, setPrice] = useState("");
   const [selectedImage, setSelectedImage] = useState(
@@ -28,7 +29,10 @@ function ContentModal() {
 
   //imitating api for showing spinner
   useEffect(() => {
-    setTimeout(() => setModalActive(true), 2000);
+    setTimeout(() => {
+      setIsLoading(true);
+      setModalActive(true);
+    }, 2000);
   }, []);
 
   useEffect(() => {
@@ -47,7 +51,7 @@ function ContentModal() {
     price && setPrice(price);
   }, []);
 
-  return !modalActive ? (
+  return !isLoading ? (
     <Spinner
       size={["lg", "lg", "xl", "xl", "xl"]}
       position="fixed"
@@ -56,7 +60,11 @@ function ContentModal() {
       transform="translate(-50%, -50%)"
     />
   ) : (
-    <Modal isOpen={isOpen} onClose={() => setModalActive(false)} isCentered>
+    <Modal
+      isOpen={modalActive}
+      onClose={() => setModalActive(false)}
+      isCentered
+    >
       <ModalOverlay />
       <ModalContent
         maxW={["75vw", "380px", "580px", "985px", "990px"]}
