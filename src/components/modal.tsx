@@ -56,7 +56,7 @@ function ContentModal() {
       transform="translate(-50%, -50%)"
     />
   ) : (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal isOpen={isOpen} onClose={() => setModalActive(false)} isCentered>
       <ModalOverlay />
       <ModalContent
         maxW={["75vw", "380px", "580px", "985px", "990px"]}
