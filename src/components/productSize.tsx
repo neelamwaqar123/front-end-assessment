@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import productDetails from "../productDetails.json";
 
 export interface ProductProperty {
   price: string;
